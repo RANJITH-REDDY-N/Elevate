@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 import styles from "../styles/ClubCardWithClubs.module.css";
 
 const ClubCardWithClubs = ({ club }) => {
-  console.log("club",club)
   return (
     <div className={styles.clubCard}>
       {/* Club Image */}
       <div className={styles.clubImageContainer}>
         <img
-          src={`data:image/jpeg;base64,${club.image}` || "/placeholder-image.png"}
+          src={club.image != null ? `data:image/jpeg;base64,${club.image}` : "/placeholder-image.png"}
           alt={club.clubName}
           className={styles.clubImage}
         />

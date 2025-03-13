@@ -1,23 +1,16 @@
 import { useEffect, useState } from "react";
-import { fetchUserClubRequests } from "../services/api";
-import styles from "../styles/Requests.module.css";
+import { useDispatch } from "react-redux";
+import styles from "../styles/RequestsInDashboard.module.css";
 
-const Requests = ({ userId }) => {
+const RequestsInDashboard = ({ userId }) => {
+  const dispatch = useDispatch();
   const [requests, setRequests] = useState([]);
   const [expanded, setExpanded] = useState(false);
-  useEffect(() => {
-    const fetchRequests = async () => {
-      const response = await fetchUserClubRequests(userId);
-      if (response.data) {
-        setRequests(response.data);
-      }
-    };
-    fetchRequests();
-  }, [userId]);
+  
 
   const handleWithdraw = (clubId) => {
     console.log(`Withdraw request for club ID: ${clubId}`);
-    setRequests(requests.filter((req) => req.clubId !== clubId));
+    // API call logic to withdraw (not implemented yet)
   };
 
   const handleReapply = (clubId) => {
@@ -45,4 +38,4 @@ const Requests = ({ userId }) => {
   );
 };
 
-export default Requests;
+export default RequestsInDashboard;

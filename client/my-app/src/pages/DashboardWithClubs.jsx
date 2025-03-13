@@ -1,12 +1,21 @@
 import { useSelector } from "react-redux";
 import Calendar from "../components/Calendar";
-import ExploreClubs from "../components/ExploreClubs";
-import Requests from "../components/Requests";
+import ExploreInDashboard from "../components/ExploreInDashboard";
+import RequestsInDashboard from "../components/RequestsInDashboard";
 import ClubCardWithClubs from "../components/ClubCardWithClubs";
 import styles from "../styles/DashboardWithClubs.module.css";
+import { useState, useEffect } from "react";
 
-const DashboardWithClubs = () => {
-  const userClubs = useSelector((state) => state.user.userClubs);
+const DashboardWithClubs = ({userClubs}) => {
+  const reduxUserClubs = useSelector((state) => state.user.userJoinedClubs);
+  const [joinedClubs, setJoinedClubs] = useState(userClubs);
+
+  useEffect(() => {
+    if (reduxUserClubs.length > 0) {
+      setJoinedClubs(reduxUserClubs);
+    }
+  }, [reduxUserClubs]); 
+
 
   return (
     <div className={styles.dashboardContainer}>
@@ -25,7 +34,7 @@ const DashboardWithClubs = () => {
         <div className={styles.clubSection}>
           <h2 className={styles.sectionTitle}>My Clubs</h2>
           <div className={styles.clubGrid}>
-            {userClubs.map((club) => (
+            {joinedClubs.map((club) => (
               <ClubCardWithClubs key={club.clubId} club={club} />
             ))}
           </div>
@@ -34,8 +43,8 @@ const DashboardWithClubs = () => {
         {/* Right Sidebar */}
         <div className={styles.sidebar}>
           <Calendar />
-          <ExploreClubs />
-          <Requests userId={13}/>
+          <ExploreInDashboard />
+          <RequestsInDashboard userId={13}/>
         </div>
       </div>
     </div>

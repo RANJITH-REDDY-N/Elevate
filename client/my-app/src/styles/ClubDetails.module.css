@@ -1,0 +1,98 @@
+.clubDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin: 20px;
+  }
+  
+  /* 🔹 Navigation Tabs */
+  .navTabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .navTabs button {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .navTabs .activeTab {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* 🔹 Club Description */
+  .clubDescription {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  
+  /* 🔹 Highlighted Words */
+  .highlight {
+    font-weight: bold;
+    color: #e67e22;
+  }
+  
+  /* 🔹 Club Members Section */
+  .clubMembersContainer {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .clubMembersTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .clubMembersList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .memberItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .memberAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+  }
+  
+  .memberInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .memberName {
+    font-weight: bold;
+  }
+  
+  .memberRole {
+    font-size: 12px;
+    color: gray;
+  }

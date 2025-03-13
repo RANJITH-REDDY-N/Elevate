@@ -65,10 +65,27 @@
   margin-top: 10px;
 }
 
-.myClubs h3 {
+.sectionTitle {
+  display: block;
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 10px;
+  padding: 10px 0;
+  color: var(--white);
+  text-decoration: none;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.sectionTitle:hover {
+  text-decoration: underline;
+}
+
+/* No Clubs Joined Text */
+.noClubsText {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 10px;
 }
 
 /* Club Accordion */

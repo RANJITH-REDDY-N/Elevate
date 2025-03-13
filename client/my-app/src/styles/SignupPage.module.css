@@ -1,60 +1,144 @@
-.container {
-    display: flex;
+/* Signup Page Container */
+.signupContainer {
+  display: flex;
+  height: 100vh;
+  background-color: var(--white);
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 20px;
+}
+
+/* Left Section: Logo */
+.leftSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+}
+
+/* Divider */
+.divider {
+  width: 2px;
+  height: 60%;
+  background: #bbb;
+}
+
+/* Right Section: Signup Form */
+.rightSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signupForm {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Name Fields */
+.nameFields {
+  display: flex;
+  gap: 10px;
+}
+
+/* Input Fields */
+.input {
+  width: 97%;
+  padding: 12px 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.input::placeholder {
+  font-style: italic;
+  color: #999;
+}
+
+/* Signup Button */
+.signupButton {
+  width: 100%;
+  padding: 12px;
+  background-color: maroon;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.signupButton:hover {
+  background-color: #5e1620;
+}
+
+/* Login Link */
+.loginLink {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+  color: maroon;
+  cursor: pointer;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .signupContainer {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: var(--offWhite);
-  }
-  
-  .title {
-    color: var(--maroon);
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
     padding: 20px;
-    background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 10px;
   }
-  
-  .input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--lightGrey);
-    border-radius: 5px;
-    font-size: 16px;
+
+  .leftSection {
+    align-items: end;
+    order: -1; /* Moves logo above the form */
   }
-  
-  .button {
-    padding: 10px;
-    background-color: var(--maroon);
-    color: var(--white);
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
+
+  .logo {
+    height: 120px; /* Reduce size for small screens */
+    margin-bottom: 10px;
   }
-  
-  .button:hover {
-    background-color: #5e1620;
+
+  .divider {
+    display: none;
   }
-  
-  .link {
-    text-align: center;
-    margin-top: 10px;
-    color: var(--maroon);
-    cursor: pointer;
+
+  .rightSection {
+    align-items: top;
+    flex: 3;
+    width: 100%;
   }
-  
-  .link:hover {
-    text-decoration: underline;
+
+  .signupForm {
+    width: 90%;
   }
+
+  .nameFields {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

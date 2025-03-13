@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userAuth, fetchUserData } from "../services/api";
-import { setUser, setUserClubs } from "../redux/userSlice";
+import { userAuth, fetchUserData, fetchUserClubs, fetchUserRequestClubs } from "../services/api";
+import { setUser, setUserJoinedClubs, setUserRequestedClubs} from "../redux/userSlice";
 import styles from "../styles/LoginPage.module.css";
 import elevateLogo from "../assets/elevate-logo.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -21,27 +21,51 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+
     try {
-      const loginResponse = await userAuth(formData);
-      if (loginResponse.error) {
-        setError("Invalid email or password");
-        return;
-      }
+        // Step 1: Authenticate User
+        const loginResponse = await userAuth(formData);
+        if (loginResponse.error) {
+            setError("Invalid email or password");
+            return;
+        }
 
-      const userData = await fetchUserData(formData.email);
-      if (userData.error) {
-        setError("Error fetching user data");
-        return;
-      }
-      const userDetails = userData.data[0];
-      dispatch(setUser(userDetails));
-      dispatch(setUserClubs(userDetails.userClubs.map((c) => c.club)));
+        // Step 2: Fetch User Data
+        const userData = await fetchUserData(formData.email);
+        if (!userData || userData.error || !userData.data.length) {
+            throw new Error("Error fetching user data");
+        }
 
-      navigate("/dashboard");
+        const userDetails = userData.data[0];
+        await dispatch(setUser(userDetails));
+
+        // Step 3: Fetch User Clubs
+        const userClubs = await fetchUserClubs(userDetails.userId);
+        if (!userClubs || userClubs.error) {
+            throw new Error("Error fetching user clubs");
+        }
+        else{
+          await dispatch(setUserJoinedClubs(userClubs.data));
+
+        }
+
+        // Step impo
+
+        const userRequestClubs = await fetchUserRequestClubs(userDetails.userId)
+        if (!userRequestClubs || userRequestClubs.error) {
+          throw new Error("Error fetching user clubs");
+        }
+        else{
+          await dispatch(setUserRequestedClubs(userRequestClubs.data));
+        }
+        // ✅ Step 6: Navigate immediately
+        await navigate("/dashboard", { state: { userJoinedClubs: userClubs.data } });
+        await console.log("fetch clubs data",userClubs)
+
     } catch (error) {
-      setError(error.response?.data?.message || "Login failed");
+        setError(error.message || "Login failed");
     }
-  };
+};
 
   return (
     <div className={styles.container}>

@@ -4,7 +4,6 @@ import styles from "../styles/ClubCard.module.css";
 
 const ClubCard = ({ club }) => {
   const [requestSent, setRequestSent] = useState(false);
-  console.log("get image from club", club)
 
   const handleJoinRequest = async () => {
     setRequestSent(true); // Update UI immediately
