@@ -40,16 +40,6 @@ public class SecurityConfig {
                         .requestMatchers("/student/**").hasAnyAuthority("SUPER_ADMIN", "CLUB_ADMIN", "STUDENT") // Student, Club Admin & Super Admin
                         .anyRequest().authenticated() // Secure everything else
                 )
-//                .exceptionHandling(exception -> exception
-//                        .authenticationEntryPoint((request, response, authException) -> {
-//                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//                            response.getWriter().write("Unauthorized: " + authException.getMessage());
-//                        })
-//                        .accessDeniedHandler((request, response, accessDeniedException) -> {
-//                            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-//                            response.getWriter().write("Access Denied: " + accessDeniedException.getMessage());
-//                        })
-//                )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

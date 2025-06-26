@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.elevate.models.*;
 import org.elevate.dtos.AnnouncementResponseDTO;
 
-import java.util.List;
-
 @Repository
 public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
 
